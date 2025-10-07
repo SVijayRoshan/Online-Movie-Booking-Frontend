@@ -1,0 +1,1 @@
+import{e as n,d as r,r as u,j as s}from"./index-YhsNIgvP.js";function i({children:o}){const{isAuthenticated:t}=n(),[,e]=r();return u.useEffect(()=>{t||e("/login")},[t,e]),t?s.jsx(s.Fragment,{children:o}):null}export{i as P};
