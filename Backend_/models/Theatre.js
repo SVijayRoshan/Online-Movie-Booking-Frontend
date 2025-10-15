@@ -10,7 +10,7 @@ const theatreSchema = new mongoose.Schema({
   name: { type: String, required: true },     // e.g. "PVR Cinemas"
   location: { type: String, required: true }, // e.g. "Chennai"
   screens: [screenSchema]                      // array of screen objects
-});
+},{collection:"theatres"},{timestamps: true});
 
 const Theatre = mongoose.model("Theatre", theatreSchema);
 

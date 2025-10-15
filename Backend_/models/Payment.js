@@ -9,7 +9,7 @@ const paymentSchema = new mongoose.Schema({
   payment_status: { type: String, enum: ["Completed","Pending","Failed"], default: "Pending" },
   transaction_id: { type: String, required: true },
   payment_time: { type: Date, default: Date.now }
-});
+},{collection:"payments"},{timestamps: true});
 
 const Payment = mongoose.model("Payment", paymentSchema);
 
