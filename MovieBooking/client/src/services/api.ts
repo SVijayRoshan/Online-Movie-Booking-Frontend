@@ -12,7 +12,7 @@ import { mockApi } from './mockApi';
 
 const API_BASE_URL = 'http://localhost:5000/api';
 
-const USE_MOCK_API = false; // <<-- change this to false once backend is ready
+const USE_MOCK_API = true; // <<-- change this to false once backend is ready
 
 async function fetchApi<T>(endpoint: string, options?: RequestInit): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
