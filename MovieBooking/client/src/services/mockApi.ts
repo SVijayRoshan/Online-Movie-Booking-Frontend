@@ -285,6 +285,7 @@ class MockApiService {
       id: '1',
       email: 'demo@example.com',
       name: 'Demo User',
+      phone: '9988776655'
     });
     this.userPasswordsByEmail.set('demo@example.com', 'password');
   }
@@ -441,7 +442,7 @@ class MockApiService {
     return { user, token };
   }
 
-  async register(email: string, password: string, name: string): Promise<AuthResponse> {
+  async register(email: string, password: string, name: string, phone: string): Promise<AuthResponse> {
     await this.delay(300);
     if (this.users.find((u) => u.email === email)) {
       throw new Error('User already exists');
@@ -456,6 +457,7 @@ class MockApiService {
       id: `user_${Date.now()}`,
       email,
       name,
+      phone,
     };
     this.users.push(user);
     this.userPasswordsByEmail.set(email, password);

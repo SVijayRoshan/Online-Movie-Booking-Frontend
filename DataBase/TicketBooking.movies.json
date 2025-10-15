@@ -1,0 +1,26 @@
+[{
+  "_id": "m001",
+  "title": "Inception",
+  "genre": [
+    "Sci-Fi",
+    "Thriller"
+  ],
+  "duration": 148,
+  "language": "English",
+  "rating": 8.8,
+  "release_date": "2010-07-16",
+  "certification": "U/A"
+},
+{
+  "_id": "m002",
+  "title": "Interstellar",
+  "genre": [
+    "Sci-Fi",
+    "Drama"
+  ],
+  "duration": 169,
+  "language": "English",
+  "rating": 8.6,
+  "release_date": "2014-11-07",
+  "certification": "U/A"
+}]

@@ -1,63 +1,64 @@
-import { useState } from 'react';
-import { useLocation } from 'wouter';
-import { useMutation } from '@tanstack/react-query';
-import { api } from '@/services/api';
-import { useAuth } from '@/contexts/AuthContext';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useToast } from '@/hooks/use-toast';
-import { Film } from 'lucide-react';
-import { Link } from 'wouter';
+import { useState } from "react";
+import { useLocation } from "wouter";
+import { useMutation } from "@tanstack/react-query";
+import { api } from "@/services/api";
+import { useAuth } from "@/contexts/AuthContext";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useToast } from "@/hooks/use-toast";
+import { Film } from "lucide-react";
+import { Link } from "wouter";
 
 export default function Login() {
   const [, setLocation] = useLocation();
   const { login } = useAuth();
   const { toast } = useToast();
 
-  const [loginEmail, setLoginEmail] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
 
-  const [registerName, setRegisterName] = useState('');
-  const [registerEmail, setRegisterEmail] = useState('');
-  const [registerPassword, setRegisterPassword] = useState('');
+  const [registerName, setRegisterName] = useState("");
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const [registerPhone, setRegisterPhone] = useState(""); 
 
   const loginMutation = useMutation({
-    mutationFn: () => api.login(loginEmail, loginPassword),
+    mutationFn: async () => api.login(loginEmail, loginPassword),
     onSuccess: (data) => {
       login(data.user, data.token);
       toast({
-        title: 'Welcome back!',
-        description: 'You have successfully logged in',
+        title: "Welcome back!",
+        description: "You have successfully logged in",
       });
-      setLocation('/');
+      setLocation("/");
     },
-    onError: (error: Error) => {
+    onError: (error: any) => {
       toast({
-        title: 'Login failed',
+        title: "Login failed",
         description: error.message,
-        variant: 'destructive',
+        variant: "destructive",
       });
     },
   });
 
   const registerMutation = useMutation({
-    mutationFn: () => api.register(registerEmail, registerPassword, registerName),
+    mutationFn: async () => api.register(registerEmail, registerPassword, registerName, registerPhone),
     onSuccess: (data) => {
       login(data.user, data.token);
       toast({
-        title: 'Account created!',
-        description: 'Welcome to CineBook',
+        title: "Account created!",
+        description: "Welcome to CineBook",
       });
-      setLocation('/');
+      setLocation("/");
     },
-    onError: (error: Error) => {
+    onError: (error: any) => {
       toast({
-        title: 'Registration failed',
+        title: "Registration failed",
         description: error.message,
-        variant: 'destructive',
+        variant: "destructive",
       });
     },
   });
@@ -85,8 +86,8 @@ export default function Login() {
         <Card className="p-6">
           <Tabs defaultValue="login" className="w-full">
             <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="login" data-testid="tab-login">Login</TabsTrigger>
-              <TabsTrigger value="register" data-testid="tab-register">Register</TabsTrigger>
+              <TabsTrigger value="login">Login</TabsTrigger>
+              <TabsTrigger value="register">Register</TabsTrigger>
             </TabsList>
 
             <TabsContent value="login">
@@ -99,7 +100,6 @@ export default function Login() {
                     value={loginEmail}
                     onChange={(e) => setLoginEmail(e.target.value)}
                     required
-                    data-testid="input-login-email"
                   />
                 </div>
 
@@ -111,17 +111,11 @@ export default function Login() {
                     value={loginPassword}
                     onChange={(e) => setLoginPassword(e.target.value)}
                     required
-                    data-testid="input-login-password"
                   />
                 </div>
 
-                <Button
-                  type="submit"
-                  className="w-full"
-                  disabled={loginMutation.isPending}
-                  data-testid="button-login"
-                >
-                  {loginMutation.isPending ? 'Logging in...' : 'Login'}
+                <Button type="submit" className="w-full" disabled={loginMutation.isPending}>
+                  {loginMutation.isPending ? "Logging in..." : "Login"}
                 </Button>
 
                 <p className="text-sm text-center text-muted-foreground">
@@ -139,7 +133,6 @@ export default function Login() {
                     value={registerName}
                     onChange={(e) => setRegisterName(e.target.value)}
                     required
-                    data-testid="input-register-name"
                   />
                 </div>
 
@@ -151,7 +144,17 @@ export default function Login() {
                     value={registerEmail}
                     onChange={(e) => setRegisterEmail(e.target.value)}
                     required
-                    data-testid="input-register-email"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="register-phone">Phone</Label>
+                  <Input
+                    id="register-phone"
+                    type="string"
+                    value={registerPhone}
+                    onChange={(e) => setRegisterPhone(e.target.value)}
+                    required
                   />
                 </div>
 
@@ -163,17 +166,11 @@ export default function Login() {
                     value={registerPassword}
                     onChange={(e) => setRegisterPassword(e.target.value)}
                     required
-                    data-testid="input-register-password"
                   />
                 </div>
 
-                <Button
-                  type="submit"
-                  className="w-full"
-                  disabled={registerMutation.isPending}
-                  data-testid="button-register"
-                >
-                  {registerMutation.isPending ? 'Creating account...' : 'Register'}
+                <Button type="submit" className="w-full" disabled={registerMutation.isPending}>
+                  {registerMutation.isPending ? "Creating account..." : "Register"}
                 </Button>
               </form>
             </TabsContent>

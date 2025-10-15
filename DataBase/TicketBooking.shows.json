@@ -1,0 +1,32 @@
+[{
+  "_id": "s001",
+  "movie_id": "m001",
+  "theatre_id": "t001",
+  "screen_no": 1,
+  "show_time": "2025-09-30T10:00:00",
+  "available_seats": [
+    "A1",
+    "A2",
+    "B1",
+    "B2",
+    "C1",
+    "C2"
+  ],
+  "price_per_ticket": 250
+},
+{
+  "_id": "s002",
+  "movie_id": "m002",
+  "theatre_id": "t001",
+  "screen_no": 2,
+  "show_time": "2025-09-30T14:00:00",
+  "available_seats": [
+    "A1",
+    "A2",
+    "B1",
+    "B2",
+    "C1",
+    "C2"
+  ],
+  "price_per_ticket": 200
+}]

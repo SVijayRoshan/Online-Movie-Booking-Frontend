@@ -10,9 +10,9 @@ import type {
 } from '@/types';
 import { mockApi } from './mockApi';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+const API_BASE_URL = 'http://localhost:5000/api';
 
-const USE_MOCK_API = !API_BASE_URL;
+const USE_MOCK_API = false; // <<-- change this to false once backend is ready
 
 async function fetchApi<T>(endpoint: string, options?: RequestInit): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
@@ -33,30 +33,22 @@ async function fetchApi<T>(endpoint: string, options?: RequestInit): Promise<T> 
 
 export const api = {
   getMovies: async (): Promise<Movie[]> => {
-    if (USE_MOCK_API) {
-      return mockApi.getMovies();
-    }
+    if (USE_MOCK_API) return mockApi.getMovies();
     return fetchApi<Movie[]>('/movies');
   },
 
   getMovie: async (id: string): Promise<Movie | null> => {
-    if (USE_MOCK_API) {
-      return mockApi.getMovie(id);
-    }
+    if (USE_MOCK_API) return mockApi.getMovie(id);
     return fetchApi<Movie>(`/movies/${id}`);
   },
 
   getShow: async (id: string): Promise<(Show & { seatsLayout: Seat[] }) | null> => {
-    if (USE_MOCK_API) {
-      return mockApi.getShow(id);
-    }
+    if (USE_MOCK_API) return mockApi.getShow(id);
     return fetchApi<Show & { seatsLayout: Seat[] }>(`/shows/${id}`);
   },
 
   lockSeats: async (showId: string, request: LockSeatsRequest): Promise<LockSeatsResponse> => {
-    if (USE_MOCK_API) {
-      return mockApi.lockSeats(showId, request);
-    }
+    if (USE_MOCK_API) return mockApi.lockSeats(showId, request);
     return fetchApi<LockSeatsResponse>(`/shows/${showId}/lock`, {
       method: 'POST',
       body: JSON.stringify(request),
@@ -64,9 +56,7 @@ export const api = {
   },
 
   createBooking: async (request: CreateBookingRequest): Promise<Booking> => {
-    if (USE_MOCK_API) {
-      return mockApi.createBooking(request);
-    }
+    if (USE_MOCK_API) return mockApi.createBooking(request);
     return fetchApi<Booking>('/bookings', {
       method: 'POST',
       body: JSON.stringify(request),
@@ -74,36 +64,26 @@ export const api = {
   },
 
   getBookings: async (userId: string): Promise<Booking[]> => {
-    if (USE_MOCK_API) {
-      return mockApi.getBookings(userId);
-    }
+    if (USE_MOCK_API) return mockApi.getBookings(userId);
     return fetchApi<Booking[]>(`/bookings?userId=${userId}`);
   },
 
   login: async (email: string, password: string): Promise<AuthResponse> => {
-    if (USE_MOCK_API) {
-      return mockApi.login(email, password);
-    }
-    return fetchApi<AuthResponse>('/auth/login', {
+    return fetchApi<AuthResponse>('/users/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     });
   },
 
-  register: async (email: string, password: string, name: string): Promise<AuthResponse> => {
-    if (USE_MOCK_API) {
-      return mockApi.register(email, password, name);
-    }
-    return fetchApi<AuthResponse>('/auth/register', {
+  register: async (email: string, password: string, name: string, phone: string): Promise<AuthResponse> => {
+    return fetchApi<AuthResponse>('/users/register', {
       method: 'POST',
-      body: JSON.stringify({ email, password, name }),
+      body: JSON.stringify({ email, password, name, phone }),
     });
   },
 
   addMovie: async (movie: Omit<Movie, 'id' | 'shows'>): Promise<Movie> => {
-    if (USE_MOCK_API) {
-      return mockApi.addMovie(movie);
-    }
+    if (USE_MOCK_API) return mockApi.addMovie(movie);
     return fetchApi<Movie>('/admin/movies', {
       method: 'POST',
       body: JSON.stringify(movie),
@@ -111,11 +91,7 @@ export const api = {
   },
 
   deleteMovie: async (id: string): Promise<void> => {
-    if (USE_MOCK_API) {
-      return mockApi.deleteMovie(id);
-    }
-    return fetchApi<void>(`/admin/movies/${id}`, {
-      method: 'DELETE',
-    });
+    if (USE_MOCK_API) return mockApi.deleteMovie(id);
+    return fetchApi<void>(`/admin/movies/${id}`, { method: 'DELETE' });
   },
 };

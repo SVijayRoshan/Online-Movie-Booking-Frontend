@@ -1,0 +1,66 @@
+[{
+  "_id": "t001",
+  "name": "PVR Cinemas",
+  "location": "Chennai",
+  "screens": [
+    {
+      "screen_no": 1,
+      "total_seats": 200,
+      "seat_layout": [
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1",
+        "C2",
+        "D1",
+        "D2"
+      ],
+      "screen_type": "IMAX"
+    },
+    {
+      "screen_no": 2,
+      "total_seats": 150,
+      "seat_layout": [
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1",
+        "C2"
+      ],
+      "screen_type": "Standard"
+    }
+  ]
+},
+{
+  "_id": "t002",
+  "name": "INOX",
+  "location": "Bangalore",
+  "screens": [
+    {
+      "screen_no": 1,
+      "total_seats": 180,
+      "seat_layout": [
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1",
+        "C2"
+      ],
+      "screen_type": "IMAX"
+    },
+    {
+      "screen_no": 2,
+      "total_seats": 120,
+      "seat_layout": [
+        "A1",
+        "A2",
+        "B1",
+        "B2"
+      ],
+      "screen_type": "Standard"
+    }
+  ]
+}]

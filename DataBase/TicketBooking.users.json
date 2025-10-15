@@ -1,0 +1,14 @@
+[{
+  "_id": "u001",
+  "name": "user1",
+  "email": "user1@example.com",
+  "phone": "+91-9000000001",
+  "password": "User1*123"
+},
+{
+  "_id": "u002",
+  "name": "user2",
+  "email": "user2@example.com",
+  "phone": "+91-9000000002",
+  "password": "User2*123"
+}]

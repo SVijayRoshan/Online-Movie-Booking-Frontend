@@ -1,0 +1,25 @@
+[{
+  "_id": "b001",
+  "user_id": "u001",
+  "show_id": "s001",
+  "seats": [
+    "A1",
+    "A2"
+  ],
+  "total_price": 500,
+  "booking_time": "2025-09-25T10:30:00",
+  "status": "Confirmed"
+},
+{
+  "_id": "b002",
+  "user_id": "u002",
+  "show_id": "s002",
+  "seats": [
+    "B1",
+    "B2",
+    "C1"
+  ],
+  "total_price": 600,
+  "booking_time": "2025-09-25T11:00:00",
+  "status": "Pending"
+}]

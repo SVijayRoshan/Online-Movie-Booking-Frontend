@@ -1,0 +1,20 @@
+[{
+  "_id": "p001",
+  "booking_id": "b001",
+  "user_id": "u001",
+  "amount": 500,
+  "payment_method": "Credit Card",
+  "payment_status": "Completed",
+  "transaction_id": "TXN1001",
+  "payment_time": "2025-09-25T10:35:00"
+},
+{
+  "_id": "p002",
+  "booking_id": "b002",
+  "user_id": "u002",
+  "amount": 600,
+  "payment_method": "UPI",
+  "payment_status": "Pending",
+  "transaction_id": "TXN1002",
+  "payment_time": "2025-09-25T11:05:00"
+}]
